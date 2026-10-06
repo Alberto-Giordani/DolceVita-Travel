@@ -11,8 +11,6 @@ Open `index.html` in your browser, or use VS Code's Live Server if you already h
 - `index.html`: semantic page structure, six tours, testimonials, and planning links.
 - `css/style.css`: palette, typography, Flexbox, Grid, responsive layout, and keyboard focus.
 - `images/`: the six destination photos.
-- `CREDITS.md`: photographer names and original photo sources.
-- `GIT_GUIDE.md`: instructions for committing and pushing from Alberto's PC.
 
 ## Required features
 
@@ -47,43 +45,7 @@ Open `index.html` in your browser, or use VS Code's Live Server if you already h
 | `--color-border` | `#ded9ce` | Subtle separators |
 | `--color-on-dark` | `#ffffff` | Text on dark backgrounds |
 
-## Explain the layout at assessment
-
-The CSS starts with the mobile layout. At 640px, two tour cards fit comfortably; at 960px, three cards fit. Media queries change the column count as the content gains space.
-
-Grid controls the collection of tours in rows and columns. `minmax(0, 1fr)` gives each column an equal share of space and lets it shrink without being forced wider by its contents.
-
-Flexbox arranges the contents of each card vertically. The content grows with `flex: 1`, and `margin-top: auto` above the duration uses remaining space so the prices align within each row. Navigation and footer links use wrapping Flexbox rows.
-
-The hero image uses `object-fit: cover` to fill its area. A dark overlay improves text readability. The image and cards clip only at their rounded borders; there is no blanket `overflow-x: hidden` on the page.
-
-CSS custom properties keep the colours consistent. Changing the accent variable updates all selectors that use it.
-
-Internal links work by matching an `href`, such as `#plan`, with the target section's `id="plan"`.
-
-## Verification on 6 October 2026
-
-The assistant checked the page locally in headless Chromium:
-
-- No horizontal scrolling at 320, 375, 640, 768, 960, 1024, and 1440px viewport widths.
-- One h1, existing navigation targets, and meaningful use of Grid and Flexbox.
-- All seven displayed images (including the repeated Amalfi photo) loaded successfully.
-- The hero/header planning links reached `#plan`.
-- The first Tab key revealed a focused skip link; activating it reached the main content.
-- No page errors or failed local image requests during those checks.
-- No automated axe accessibility violations at the checked 375px layout.
-- Enlarging text to 200% at 375px preserved the page width and heading content after a wrapping correction.
-
-Review the website yourself in your browser before assessment. These checks do not cover every browser, device, assistive technology, or operating system.
 
 ## Demonstration content
 
 Offers, durations, prices, names, and testimonials are fictional project content. The website does not book trips or take payments.
-
-The email CTA opens a draft with destination, dates, traveller count, and budget fields. Its recipient is deliberately blank because no real agency email address has been supplied. It requires an email app configured on the visitor's device. Add a real recipient if this becomes an actual agency site.
-
-## AI assistance and teamwork
-
-This implementation was prepared with AI assistance. Alberto should review it, adapt it, and explain its actual HTML and CSS at assessment. Teammates coordinate their broad design direction while implementing their own code in their own repositories.
-
-No GitHub push was performed by the assistant.
