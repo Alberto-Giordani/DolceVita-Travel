@@ -23,9 +23,14 @@ body {
   margin: 0;
   background-color: var(--color-background);
   color: var(--color-text);
-  font-family: Arial, Helvetica, sans-serif;
   line-height: 1.6;
   overflow-wrap: anywhere;
+}
+
+body,
+h3,
+blockquote {
+  font-family: "Lato", Arial, sans-serif;
 }
 
 h1,
@@ -37,10 +42,11 @@ p {
 
 h1,
 h2,
-h3 {
-  font-family: Georgia, "Times New Roman", serif;
+.brand-name {
+  font-family: "Bodoni Moda", Georgia, serif;
   font-weight: 400;
   line-height: 1.15;
+  font-optical-sizing: auto;
 }
 
 h1 {
@@ -50,6 +56,10 @@ h1 {
 h2 {
   margin-bottom: 2rem;
   font-size: 2rem;
+}
+
+h3 {
+  font-weight: 700;
 }
 
 a {
@@ -118,7 +128,6 @@ img {
 }
 
 .brand-name {
-  font-family: Georgia, "Times New Roman", serif;
   font-size: 2rem;
   line-height: 1;
 }
@@ -304,7 +313,6 @@ img {
 
 blockquote {
   margin: 0;
-  font-family: Georgia, "Times New Roman", serif;
   font-size: 1.05rem;
 }
 
