@@ -1,13 +1,12 @@
 /* Colours */
 :root {
-  --color-background: #f4f9ff;
-  --color-surface: #ffffff;
+  --flag-white: #f4f9ff;
   --color-text: #202b25;
   --color-muted: #52645a;
   --flag-red: #cd212a;
   --flag-red-dark: #a61922;
-  --sea-green: #008c45;
-  --sea-green-dark: #006b35;
+  --flag-green: #008c45;
+  --flag-green-dark: #006b35;
   --color-soft: #eee9df;
   --color-border: #cad8d0;
   --color-shadow: rgba(32, 43, 37, 0.18);
@@ -21,7 +20,7 @@
 
 body {
   margin: 0;
-  background-color: var(--color-background);
+  background-color: var(--flag-white);
   color: var(--color-text);
   line-height: 1.6;
   overflow-wrap: anywhere;
@@ -98,20 +97,6 @@ img {
   text-transform: uppercase;
 }
 
-.skip-link {
-  position: absolute;
-  top: 0.5rem;
-  left: 1rem;
-  z-index: 1;
-  padding: 0.75rem 1rem;
-  background-color: var(--color-surface);
-  transform: translateY(-150%);
-}
-
-.skip-link:focus {
-  transform: translateY(0);
-}
-
 /* Header and navigation use Flexbox to arrange and wrap their items. */
 .header-inner {
   display: flex;
@@ -124,7 +109,7 @@ img {
 .brand {
   display: inline-flex;
   flex-direction: column;
-  color: var(--sea-green);
+  color: var(--flag-green);
 }
 
 .brand-name {
@@ -163,9 +148,9 @@ img {
   color: var(--flag-red);
 }
 
-.nav-list .nav-cta {
+.nav-cta {
   padding: 0.6rem 0.95rem;
-  border: 1px solid var(--sea-green);
+  border: 1px solid var(--flag-green);
   border-radius: 6px;
   font-weight: 700;
 }
@@ -180,11 +165,10 @@ img {
   min-height: 460px;
   padding: 2.75rem 1.5rem;
   border-radius: 12px;
-  background-color: var(--sea-green);
   background-image: linear-gradient(var(--color-overlay), var(--color-overlay)), url("../images/tuscany-hero.jpg");
   background-position: center;
   background-size: cover;
-  color: var(--color-surface);
+  color: var(--flag-white);
 }
 
 .hero-description {
@@ -194,7 +178,7 @@ img {
 .hero .eyebrow,
 .planning-panel .eyebrow {
   margin-bottom: 0;
-  color: var(--color-surface);
+  color: var(--flag-white);
 }
 
 .button {
@@ -203,7 +187,7 @@ img {
   padding: 0.85rem 1.25rem;
   border-radius: 6px;
   background-color: var(--flag-red);
-  color: var(--color-surface);
+  color: var(--flag-white);
   font-size: 0.85rem;
   font-weight: 700;
 }
@@ -227,8 +211,8 @@ img {
   border: 1px solid var(--color-border);
   border-radius: 10px;
   overflow: hidden;
-  background-color: var(--color-surface);
-  transition: transform 0.5s ease, box-shadow 0.5s ease;
+  background-color: var(--flag-white);
+  transition: transform 0.5s ease-in, box-shadow 0.5s ease-in;
 }
 
 .tour-card:hover {
@@ -308,7 +292,13 @@ img {
   margin: 0;
   padding: 1.5rem;
   border-radius: 8px;
-  background-color: var(--color-surface);
+  background-color: var(--flag-white);
+  transition: transform 0.5s ease-in, box-shadow 0.5s ease-in;
+}
+
+.testimonial:hover {
+  transform: translateX(-5px) translateY(-5px);
+  box-shadow: 0 12px 24px var(--color-shadow);
 }
 
 blockquote {
@@ -338,8 +328,8 @@ figcaption span {
   gap: 1.2rem;
   padding: 2rem 1.5rem;
   border-radius: 12px;
-  background-color: var(--sea-green-dark);
-  color: var(--color-surface);
+  background-color: var(--flag-green-dark);
+  color: var(--flag-white);
 }
 
 .planning-panel h2 {
@@ -351,8 +341,8 @@ figcaption span {
 }
 
 .button-light {
-  background-color: var(--color-surface);
-  color: var(--sea-green-dark);
+  background-color: var(--flag-white);
+  color: var(--flag-green-dark);
 }
 
 .button-light:hover {
@@ -361,7 +351,7 @@ figcaption span {
 
 .hero a:focus-visible,
 .planning-panel a:focus-visible {
-  outline-color: var(--color-surface);
+  outline-color: var(--flag-white);
 }
 
 /* Footer */
@@ -402,7 +392,7 @@ figcaption span {
 }
 
 /* Tablet: two tour columns and more space for navigation. */
-@media (min-width: 40rem) {
+@media (min-width: 768px) {
 
   .header-inner,
   .footer-inner,
@@ -428,7 +418,7 @@ figcaption span {
 }
 
 /* Desktop: three tour columns and three testimonial columns. */
-@media (min-width: 60rem) {
+@media (min-width: 1024px) {
   h1 {
     font-size: 4.75rem;
   }
@@ -440,16 +430,5 @@ figcaption span {
   .tour-grid,
   .testimonial-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
-/* Respect visitors who prefer reduced motion. */
-@media (prefers-reduced-motion: reduce) {
-  .tour-card {
-    transition: none;
-  }
-
-  .tour-card:hover {
-    transform: none;
   }
 }
