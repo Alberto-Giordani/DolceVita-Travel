@@ -1,6 +1,6 @@
 # DolceVita Travel
 
-A single-page travel agency website about Italy, created by Alberto Giordani for the front-end practicum using plain HTML5 and CSS3. No JavaScript, framework, package installation, or build process is required.
+A single-page travel agency website about Italy, created by Alberto Giordani for the front-end practicum using plain HTML5 and CSS3.
 
 ## Open the website
 
