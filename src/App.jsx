@@ -1,13 +1,13 @@
+import Header from './components/Header'
+
 function App() {
   return (
-    <main className="min-h-screen bg-flag-white p-6 text-text">
-      <h1 className="text-3xl font-bold text-flag-green">
-        DolceVita Travel
-      </h1>
-      <p className="mt-4 text-flag-red">
-        Our journey through Italy continues.
-      </p>
-    </main>
+    <div className="min-h-screen bg-flag-white font-body leading-relaxed text-text">
+      <Header />
+
+      <main>
+      </main>
+    </div>
   )
 }
 
