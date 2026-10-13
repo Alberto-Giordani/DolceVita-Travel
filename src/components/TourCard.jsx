@@ -1,4 +1,9 @@
+import { useState } from 'react'
+import TravellerStepper from './TravellerStepper'
+
 function TourCard({ tour }) {
+    const [travellers, setTravellers] = useState(1)
+
     return (
         <article className="flex min-w-0 flex-col overflow-hidden rounded-[10px] border border-border bg-flag-white transition-[translate,box-shadow] duration-500 ease-in hover:-translate-x-[5px] hover:-translate-y-[5px] hover:shadow-card">
             <img
@@ -20,6 +25,19 @@ function TourCard({ tour }) {
                 <p className="mt-auto mb-4 text-sm font-bold">
                     {tour.days} days · {tour.nights} nights
                 </p>
+
+                <div
+                    role="group"
+                    aria-label={`Travellers for ${tour.title}`}
+                    className="mb-4 flex flex-wrap items-center justify-between gap-3"
+                >
+                    <span className="text-sm font-bold">Travellers</span>
+
+                    <TravellerStepper
+                        value={travellers}
+                        onChange={setTravellers}
+                    />
+                </div>
 
                 <div className="flex flex-wrap items-center justify-between gap-2 border-t border-border pt-4">
                     <p>
