@@ -14,4 +14,5 @@
   --color-overlay: rgba(32, 43, 37, 0.72);
   --font-heading: "Bodoni Moda", Georgia, serif;
   --font-body: "Lato", Arial, sans-serif;
+  --shadow-card: 0 12px 24px var(--color-shadow);
 }
