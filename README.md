@@ -1,91 +1,109 @@
 # DolceVita Travel
 
-A single-page travel agency website about Italy, created by Alberto Giordani for the front-end practicum using plain HTML5 and CSS3.
+A single-page travel agency website about Italy, created by Alberto Giordani for the front-end practicum. Assignment 2 rebuilds the original HTML/CSS website with **React, Vite, and Tailwind CSS**, preserving its content and visual identity.
 
-## Open the website
+The React version is developed on the `week-2-react` branch in the existing repository.
 
-Open `index.html` in your browser, or use VS Code's Live Server if installed. The photos use local files. Google Fonts requires an internet connection; Georgia and Arial provide fallback fonts.
+## Run locally
 
-## Files
+Development environment used: Node.js **22.16.0** and npm **11.5.2**.
 
-- `index.html`: page structure, six tour packages, three testimonials, and planning links.
-- `css/style.css`: colour variables, typography, Flexbox, Grid, hover effects, keyboard focus, and responsive styles.
-- `images/tuscany-hero.jpg`: the hero background photo.
-- `images/rome.jpg`, `images/venice.jpg`, `images/florence.jpg`, `images/amalfi.jpg`, `images/cinque-terre.jpg`, and `images/sicily.jpg`: the six tour photos.
+For a new local copy:
 
-## Features and structure
+```bash
+git clone https://github.com/Alberto-Giordani/DolceVita-Travel.git
+cd DolceVita-Travel
+git switch week-2-react
+npm ci
+npm run dev
+```
 
-| Requirement | Implementation |
+Open the Local URL printed by Vite. Use the Vite development server rather than opening `index.html` directly or using Live Server.
+
+| Command | Purpose |
 | --- | --- |
-| Single page | Internal links target `#home`, `#tours`, `#testimonials`, and `#plan` |
-| Semantic structure | `header`, `nav`, `main`, `section`, and `footer`; tour packages use `article` |
-| Exactly one `h1` | The hero heading; section titles use `h2` and tour titles use `h3` |
-| Destination photo hero | A Tuscany background photo with a dark overlay behind the light text |
-| Tour packages | Six Italian destinations, each with days, nights, and a fictional starting price per person in dollars |
-| Testimonials | Three fictional sample reviews using `figure`, `blockquote`, and `figcaption` |
-| Plan your trip CTA | Hero and tour links lead to the planning section; its final link opens an email draft |
-| Global border-box | `* { box-sizing: border-box; }` applies to all HTML elements |
-| CSS custom properties | Colours are declared in `:root` and used with `var()` |
-| CSS Grid | Responsive columns for the tour and testimonial grids |
-| Flexbox | Header, navigation, card content and footers, testimonials, planning panel, and footer |
+| `npm run dev` | Start the development server |
+| `npm run build` | Generate the production site in `dist/` |
+| `npm run preview` | Preview the production build after building |
+| `npm run lint` | Check JavaScript and JSX with ESLint |
 
-Grid arranges cards in rows and columns. Flexbox arranges items within components; growing card content and `margin-top: auto` help align durations, prices, and testimonial captions.
+## Page content
 
-## Visual identity
+- Tuscany destination-photo hero with a dark overlay and the page's only `h1`.
+- Six tour packages showing a photo, description, duration, and starting price per person in dollars.
+- A category filter: **All**, **Cities**, or **Coast**.
+- An independent traveller stepper on every card, allowing **1 to 8** travellers.
+- Three fictional testimonials, labelled as sample reviews.
+- A â€œPlan your tripâ€ section with an email-draft link.
+- A footer with internal navigation, author credit, and an Unsplash photo credit.
 
-The palette refers to the Italian flag through green, red, and a pale background, with darker shades for text and buttons.
+## Components and data
 
-| CSS variable | Value | Purpose |
-| --- | --- | --- |
-| `--flag-white` | `#f4f9ff` | Page and card backgrounds; light text on dark areas |
-| `--color-text` | `#202b25` | Main text |
-| `--color-muted` | `#52645a` | Supporting text |
-| `--flag-red` | `#cd212a` | Buttons, highlights, links, and focus outlines |
-| `--flag-red-dark` | `#a61922` | Red button hover background |
-| `--flag-green` | `#008c45` | Branding and navigation CTA border |
-| `--flag-green-dark` | `#006b35` | Planning panel background and light button text |
-| `--color-soft` | `#eee9df` | Testimonials section and light button hover background |
-| `--color-border` | `#cad8d0` | Borders and separators |
-| `--color-shadow` | `rgba(32, 43, 37, 0.18)` | Card hover shadows |
-| `--color-overlay` | `rgba(32, 43, 37, 0.72)` | Dark layer over the hero photo |
+`src/App.jsx` renders `Header`, `MainContent`, and `Footer`. `MainContent` contains the hero, filtered tour grid, testimonials, and planning section.
 
-**Bodoni Moda** (weight 400) is used for the brand name and `h1`/`h2` headings. **Lato** (weights 400 and 700) is used for body text, tour headings, navigation, and buttons. Both are loaded through a Google Fonts stylesheet in the HTML.
+| File | Responsibility |
+| --- | --- |
+| `src/components/Header.jsx` | Branding and main navigation |
+| `src/components/Hero.jsx` | Hero photograph, heading, and planning link |
+| `src/components/MainContent.jsx` | Main landmark, category state, and tour grid |
+| `src/components/TourCard.jsx` | Reusable card and its traveller-count state |
+| `src/components/TravellerStepper.jsx` | Controlled decrease/increase buttons and displayed count |
+| `src/components/Testimonials.jsx` | Reviews rendered from their data array |
+| `src/components/PlanYourTrip.jsx` | Planning call to action |
+| `src/components/Footer.jsx` | Footer branding, links, and credits |
+| `src/data/tours.js` | Six tour objects with stable IDs, categories, durations, prices, and imported images |
+| `src/data/testimonials.js` | Three sample review objects |
+| `src/index.css` | Tailwind import and custom theme variables |
+| `src/main.jsx` | Mounts the React application and imports the stylesheet |
+| `images/` | Six destination photos and the Tuscany hero photo |
+| `public/favicon.svg` | Browser-tab icon |
 
-Tour cards and testimonials move 5px upward and left and gain a shadow on hover. Both changes use a 0.5-second `ease-in` transition.
+The project uses JavaScript and JSX, with hardcoded data and no backend.
 
-## Responsive layout
+## How the React interactions work
 
-The CSS is mobile-first. Media queries add columns and adjust typography and spacing as the viewport widens.
+### Category filter
 
-| Viewport width | Tour columns | Testimonial columns |
+`MainContent` stores the selected category with `useState('All')`. Clicking a filter button calls `setFilter(category)`. During the next render, `visibleTours` is calculated using `.filter()`, and `.map()` renders the matching `TourCard` components.
+
+`visibleTours` is derived from the data and selected category rather than stored as another state variable. Stable `tour.id` values provide React keys. The selected button has red text and `aria-pressed="true"`; all filter buttons have green borders.
+
+### Controlled traveller stepper
+
+Each `TourCard` stores its own count with `useState(1)` and passes it to the stepper:
+
+```jsx
+<TravellerStepper value={travellers} onChange={setTravellers} />
+```
+
+`TravellerStepper` receives its value through props. Clicking a button calculates the requested number and calls `onChange`; the parent updates state and passes the new value back. The stepper has no separate count state.
+
+The buttons are disabled at the limits, and `Math.max()` / `Math.min()` keep changes within range. Count updates use `aria-live="polite"`.
+
+Counts are independent between cards. If filtering removes a card and later displays it again, that card starts at 1. Reloading the page resets all counts. Counts are demonstration selections, not saved reservations.
+
+## Styling and responsiveness
+
+Tailwind CSS 4 is connected through `@tailwindcss/vite` in `vite.config.js`. The active stylesheet imports Tailwind with `@import "tailwindcss";`.
+
+Custom `@theme` variables define the Italian flag-inspired palette, Bodoni Moda heading font, Lato body font, overlay colour, and card shadow. Google Fonts requires an internet connection; Georgia and Arial are the fallbacks.
+
+Grid arranges the tours and testimonials. Flexbox handles navigation, card internals, the planning panel, and footer layout. Cards and testimonials have a 0.5-second `ease-in` transition for `translate` and `box-shadow`.
+
+Layouts are mobile-first, using unprefixed classes followed by `md:` and `lg:` variants:
+
+| Default viewport width | Tour columns | Testimonial columns |
 | --- | --- | --- |
 | Below 768px | 1 | 1 |
 | 768px to below 1024px | 2 | 1 |
 | 1024px and above | 3 | 3 |
 
-The content container has a maximum width of 1160px. Images scale within their containers; tour images use a 3:2 aspect ratio and `object-fit: cover`. Navigation and card footers wrap when needed. Grid tracks use `minmax(0, 1fr)`, and long text can wrap with `overflow-wrap: anywhere`.
+These pixel equivalents use Tailwind's default breakpoints with the default browser font size. Navigation and card controls wrap when needed. Tour images use a 3:2 aspect ratio and `object-cover`.
 
-## Accessibility and manual checks
+Tailwind's [Preflight](https://tailwindcss.com/docs/preflight) supplies global `box-sizing: border-box`, including pseudo-elements.
 
-The HTML declares English as the page language and provides descriptive alternative text for the tour photos. The hero background is decorative. Links have visible keyboard focus outlines, with light outlines in the hero and planning panel. A dark overlay improves text contrast over the hero photo.
+## Demonstration content and credits
 
-Before presenting:
+Offers, prices, names, and testimonials are fictional student-project content. Photography is credited to Unsplash in the footer.
 
-- Check every navigation and planning link.
-- Navigate through links with Tab and activate them with Enter.
-- Check phone, tablet, and desktop widths, including around 768px and 1024px, for horizontal scrolling or clipped content.
-- Check image loading, text readability, and behaviour when zooming.
-
-These are verification steps, not a claim that all accessibility or responsive checks have passed.
-
-## Git and teamwork
-
-Repository: [Alberto-Giordani/DolceVita-Travel](https://github.com/Alberto-Giordani/DolceVita-Travel).
-
-Keep real, small commits after coherent changes, with messages describing what changed. Each teammate implements their own code in their own repository while the group stays aligned on the project concept and visual direction.
-
-## Demonstration content
-
-Offers, durations, prices, names, and testimonials are fictional project content. Photo credit links to Unsplash in the footer.
-
-The planning link uses `mailto:?subject=DolceVita%20Travel%20trip`. It opens a draft with the subject “DolceVita Travel trip” when an email handler is configured. No recipient address is supplied. The website does not submit enquiries, book trips, or take payments.
+The planning link is `mailto:?subject=DolceVita%20Travel%20trip`. With a configured email handler, it opens a draft with a subject and no recipient. It sends nothing automatically. There is no booking system, payment processing, or backend.
