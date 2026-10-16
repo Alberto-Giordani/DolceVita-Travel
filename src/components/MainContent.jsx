@@ -2,6 +2,8 @@ import { useState } from 'react'
 import Hero from './Hero'
 import TourCard from './TourCard'
 import { tours } from '../data/tours'
+import Testimonials from './Testimonials'
+import PlanYourTrip from './PlanYourTrip'
 
 const categories = ['All', 'Cities', 'Coast']
 
@@ -19,7 +21,7 @@ function MainContent() {
 
             <section
                 id="tours"
-                className="mx-auto max-w-[1160px] px-4 py-14"
+                className="mx-auto max-w-290 px-4 py-14"
             >
                 <p className="mb-3 text-xs font-bold tracking-[0.14em] text-flag-red uppercase">
                     Find your Italian escape
@@ -54,6 +56,8 @@ function MainContent() {
                     ))}
                 </div>
             </section>
+            <Testimonials />
+            <PlanYourTrip />
         </main>
     )
 }
