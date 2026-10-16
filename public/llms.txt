@@ -1,0 +1,12 @@
+# DolceVita Travel
+
+> A student project presenting a fictional travel agency specialising in Italy.
+
+Tour offers, prices and testimonials are demonstration content.
+The site does not accept bookings or payments.
+
+## Website sections
+
+- [Our tours](/#tours): Six Italian tour packages with durations and prices.
+- [Traveller stories](/#testimonials): Sample traveller testimonials.
+- [Plan your trip](/#plan): Trip enquiry call to action.
