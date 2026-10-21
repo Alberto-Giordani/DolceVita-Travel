@@ -7,7 +7,7 @@ function TourCard({ tour }) {
     return (
         <article className="flex min-w-0 flex-col overflow-hidden rounded-[10px] border border-border bg-flag-white transition-[translate,box-shadow] duration-500 ease-in hover:-translate-x-[5px] hover:-translate-y-[5px] hover:shadow-card">
             <img
-                src={tour.image}
+                src={`/${tour.image}`}
                 alt={tour.alt}
                 loading="lazy"
                 className="aspect-3/2 w-full object-cover"
