@@ -1,6 +1,7 @@
 export const toursData = [
     {
         id: 'venice',
+        slug: 'venice-canals',
         title: 'Venice, beyond the canals',
         description: 'Wander through hidden courtyards, colourful islands, and waterside streets.',
         category: 'Cities',
@@ -12,6 +13,7 @@ export const toursData = [
     },
     {
         id: 'cinque-terre',
+        slug: 'cinque-terre',
         title: 'The colours of Cinque Terre',
         description: 'Explore coastal paths, bright fishing villages, and the blue Ligurian Sea.',
         category: 'Coast',
@@ -23,6 +25,7 @@ export const toursData = [
     },
     {
         id: 'florence',
+        slug: 'florence-tuscany',
         title: 'Florence & Tuscany',
         description: 'Renaissance masterpieces, hilltop towns, and slow days in the countryside.',
         category: 'Cities',
@@ -34,6 +37,7 @@ export const toursData = [
     },
     {
         id: 'rome',
+        slug: 'rome-eternal-city',
         title: 'Rome, the Eternal City',
         description: 'Ancient wonders, lively piazzas, and a generous taste of Roman life.',
         category: 'Cities',
@@ -45,6 +49,7 @@ export const toursData = [
     },
     {
         id: 'amalfi',
+        slug: 'amalfi-coast',
         title: 'The Amalfi Coast',
         description: 'Seaside villages, lemon-scented streets, and views worth slowing down for.',
         category: 'Coast',
@@ -56,6 +61,7 @@ export const toursData = [
     },
     {
         id: 'sicily',
+        slug: 'sicily-discovery',
         title: 'Sicily, a world of its own',
         description: 'Historic streets, Mediterranean flavours, and sunlit shores to remember.',
         category: 'Coast',

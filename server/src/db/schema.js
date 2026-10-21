@@ -2,6 +2,7 @@ import { pgTable, text, integer } from 'drizzle-orm/pg-core'
 
 export const tours = pgTable('tours', {
   id: text('id').primaryKey(),
+  slug: text('slug').notNull().unique(),
   title: text('title').notNull(),
   description: text('description').notNull(),
   category: text('category').notNull(),
