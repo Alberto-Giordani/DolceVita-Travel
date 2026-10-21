@@ -1,43 +1,118 @@
-function Header() {
+import { useRef, useState } from 'react'
+
+const navigationLinks = [
+    { href: '/#tours', label: 'Our tours' },
+    { href: '/#testimonials', label: 'Traveller stories' },
+    { href: '/#plan', label: 'Plan your trip' },
+]
+
+function HeaderLinks({ onNavigate }) {
     return (
-        <header>
-            <div className="mx-auto flex max-w-[1160px] flex-col items-center gap-5 px-4 py-6 md:flex-row md:flex-wrap md:justify-between">
-                <a href="#home" className="inline-flex flex-col text-flag-green">
+        <ul className="flex flex-col gap-3 text-sm md:flex-row md:flex-wrap md:items-center md:gap-5">
+            {navigationLinks.map((link) => (
+                <li key={link.href}>
+                    <a
+                        href={link.href}
+                        onClick={onNavigate}
+                        className={`inline-block py-2 hover:text-flag-red focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-flag-red ${link.href === '/#plan'
+                                ? 'rounded-md border border-flag-green px-4 font-bold'
+                                : ''
+                            }`}
+                    >
+                        {link.label}
+                    </a>
+                </li>
+            ))}
+        </ul>
+    )
+}
+
+function Header() {
+    const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const menuButtonRef = useRef(null)
+
+    function closeMenu() {
+        setIsMenuOpen(false)
+    }
+
+    function handleKeyDown(event) {
+        if (event.key === 'Escape' && isMenuOpen) {
+            closeMenu()
+            menuButtonRef.current?.focus()
+        }
+    }
+
+    return (
+        <header onKeyDown={handleKeyDown}>
+            <div className="relative mx-auto flex max-w-290 items-center justify-between gap-4 px-4 py-6">
+                <a
+                    href="/#home"
+                    onClick={closeMenu}
+                    className="inline-flex flex-col text-flag-green focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-flag-red"
+                >
                     <span className="font-heading text-[2rem] leading-none">
                         DolceVita
                     </span>
+
                     <span className="mt-2 text-[0.6rem] font-bold tracking-[0.2em] text-flag-red">
                         TRAVEL
                     </span>
                 </a>
 
-                <nav>
-                    <ul className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm">
-                        <li>
-                            <a
-                                href="#tours"
-                                className="inline-block py-2 hover:text-flag-red"
-                            >
-                                Our tours
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                href="#testimonials"
-                                className="inline-block py-2 hover:text-flag-red"
-                            >
-                                Traveller stories
-                            </a>
-                        </li>
-                        <li>
-                            <a
-                                href="#plan"
-                                className="inline-block rounded-md border border-flag-green px-4 py-2 font-bold hover:text-flag-red"
-                            >
-                                Plan your trip
-                            </a>
-                        </li>
-                    </ul>
+                <nav
+                    aria-label="Main navigation"
+                    className="hidden md:block"
+                >
+                    <HeaderLinks />
+                </nav>
+
+                <button
+                    ref={menuButtonRef}
+                    type="button"
+                    aria-expanded={isMenuOpen}
+                    aria-controls="mobile-navigation"
+                    onClick={() => setIsMenuOpen((previous) => !previous)}
+                    className="flex size-11 shrink-0 cursor-pointer items-center justify-center rounded-md border border-flag-green text-flag-green hover:text-flag-red focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-flag-red md:hidden"
+                >
+                    <span className="sr-only">
+                        {isMenuOpen ? 'Close navigation' : 'Open navigation'}
+                    </span>
+
+                    <span
+                        aria-hidden="true"
+                        className="relative block size-6"
+                    >
+                        <span
+                            className={`absolute top-1/2 left-0 h-0.5 w-full bg-current transition-transform duration-300 ease-in-out motion-reduce:transition-none ${isMenuOpen
+                                    ? 'rotate-45'
+                                    : '-translate-y-2'
+                                }`}
+                        />
+
+                        <span
+                            className={`absolute top-1/2 left-0 h-0.5 w-full bg-current transition-opacity duration-300 ease-in-out motion-reduce:transition-none ${isMenuOpen ? 'opacity-0' : 'opacity-100'
+                                }`}
+                        />
+
+                        <span
+                            className={`absolute top-1/2 left-0 h-0.5 w-full bg-current transition-transform duration-300 ease-in-out motion-reduce:transition-none ${isMenuOpen
+                                    ? '-rotate-45'
+                                    : 'translate-y-2'
+                                }`}
+                        />
+                    </span>
+                </button>
+
+                <nav
+                    id="mobile-navigation"
+                    aria-label="Mobile navigation"
+                    inert={!isMenuOpen}
+                    className={`absolute inset-x-4 top-full z-20 rounded-lg border border-border bg-flag-white p-5 shadow-md transition-[opacity,translate] duration-300 ease-in-out motion-reduce:transition-none md:hidden ${isMenuOpen
+                            ? 'translate-y-0 opacity-100'
+                            : 'pointer-events-none -translate-y-2 opacity-0'
+                        }`}
+                >
+                    <HeaderLinks onNavigate={closeMenu} />
                 </nav>
             </div>
         </header>

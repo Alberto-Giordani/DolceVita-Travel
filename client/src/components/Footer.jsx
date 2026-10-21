@@ -5,7 +5,7 @@ function Footer() {
         <div className="flex flex-col items-start gap-6 md:flex-row md:flex-wrap md:items-center md:justify-between">
           <div>
             <a
-              href="#home"
+              href="/#home"
               className="inline-flex flex-col text-flag-green"
             >
               <span className="font-heading text-[2rem] leading-none">
@@ -25,7 +25,7 @@ function Footer() {
             <ul className="flex flex-wrap gap-x-5 gap-y-2 text-sm">
               <li>
                 <a
-                  href="#plan"
+                  href="/#plan"
                   className="inline-block py-2 hover:text-flag-red"
                 >
                   Plan your trip
@@ -33,7 +33,7 @@ function Footer() {
               </li>
               <li>
                 <a
-                  href="#home"
+                  href="/#home"
                   className="inline-block py-2 hover:text-flag-red"
                 >
                   Back to top ↑
