@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react'
+import HeaderAccount from './HeaderAccount'
 
 const navigationLinks = [
     { href: '/#tours', label: 'Our tours' },
@@ -8,21 +9,26 @@ const navigationLinks = [
 
 function HeaderLinks({ onNavigate }) {
     return (
-        <ul className="flex flex-col gap-3 text-sm md:flex-row md:flex-wrap md:items-center md:gap-5">
+        <ul className="flex flex-col gap-3 text-sm md:flex-row md:flex-wrap md:items-center md:justify-end md:gap-5">
             {navigationLinks.map((link) => (
                 <li key={link.href}>
                     <a
                         href={link.href}
                         onClick={onNavigate}
-                        className={`inline-block py-2 hover:text-flag-red focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-flag-red ${link.href === '/#plan'
+                        className={`inline-block py-2 hover:text-flag-red focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-flag-red ${
+                            link.href === '/#plan'
                                 ? 'rounded-md border border-flag-green px-4 font-bold'
                                 : ''
-                            }`}
+                        }`}
                     >
                         {link.label}
                     </a>
                 </li>
             ))}
+
+            <li className="min-w-0">
+                <HeaderAccount onNavigate={onNavigate} />
+            </li>
         </ul>
     )
 }
@@ -48,7 +54,7 @@ function Header() {
                 <a
                     href="/#home"
                     onClick={closeMenu}
-                    className="inline-flex flex-col text-flag-green focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-flag-red"
+                    className="inline-flex shrink-0 flex-col text-flag-green focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-flag-red"
                 >
                     <span className="font-heading text-[2rem] leading-none">
                         DolceVita
@@ -61,7 +67,7 @@ function Header() {
 
                 <nav
                     aria-label="Main navigation"
-                    className="hidden md:block"
+                    className="hidden min-w-0 md:block md:flex-1"
                 >
                     <HeaderLinks />
                 </nav>
