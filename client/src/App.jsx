@@ -3,6 +3,7 @@ import Header from './components/Header'
 import MainContent from './components/MainContent'
 import TourDetails from './components/TourDetails'
 import Footer from './components/Footer'
+import SignUp from './components/SignUp'
 
 function App() {
     return (
@@ -18,6 +19,11 @@ function App() {
                 <Route
                     path="/tours/:slug"
                     element={<TourDetails />}
+                />
+
+                <Route
+                    path="/signup"
+                    element={<SignUp />}
                 />
 
                 <Route
