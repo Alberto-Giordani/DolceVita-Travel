@@ -5,8 +5,8 @@ import { db } from './db/index.js'
 import { user, session, account, verification } from './db/schema.js'
 
 const secret = process.env.BETTER_AUTH_SECRET
-const baseURL = process.env.BETTER_AUTH_URL
-const clientURL = process.env.CLIENT_URL
+const baseURL = process.env.BETTER_AUTH_URL || process.env.RENDER_EXTERNAL_URL
+const clientURL = process.env.CLIENT_URL || baseURL
 
 if (!secret || !baseURL || !clientURL) {
     throw new Error(
