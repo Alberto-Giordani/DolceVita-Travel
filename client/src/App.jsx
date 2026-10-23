@@ -4,6 +4,7 @@ import MainContent from './components/MainContent'
 import TourDetails from './components/TourDetails'
 import Footer from './components/Footer'
 import SignUp from './components/SignUp'
+import Login from './components/Login'
 
 function App() {
     return (
@@ -24,6 +25,11 @@ function App() {
                 <Route
                     path="/signup"
                     element={<SignUp />}
+                />
+
+                <Route
+                    path="/login"
+                    element={<Login />}
                 />
 
                 <Route

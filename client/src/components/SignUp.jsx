@@ -137,6 +137,16 @@ function SignUp() {
                 </button>
             </form>
 
+            <p className="mt-6 text-sm">
+                Already have an account?{' '}
+                <Link
+                    to="/login"
+                    className="font-bold text-flag-red underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-flag-red"
+                >
+                    Sign in
+                </Link>
+            </p>
+
             <Link
                 to="/"
                 className="mt-6 inline-block font-bold text-flag-red underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-flag-red"
