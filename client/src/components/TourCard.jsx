@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import TravellerStepper from './TravellerStepper'
+import { Link } from 'react-router'
 
 function TourCard({ tour }) {
     const [travellers, setTravellers] = useState(1)
@@ -15,7 +16,12 @@ function TourCard({ tour }) {
 
             <div className="flex flex-1 flex-col p-5">
                 <h3 className="text-[1.45rem] font-bold">
-                    {tour.title}
+                    <Link
+                        to={`/tours/${tour.slug}`}
+                        className="hover:text-flag-red hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-flag-red"
+                    >
+                        {tour.title}
+                    </Link>
                 </h3>
 
                 <p className="mt-3 mb-4 text-sm text-muted">
@@ -48,12 +54,12 @@ function TourCard({ tour }) {
                         <span className="text-xs text-muted"> / person</span>
                     </p>
 
-                    <a
-                        href="#plan"
+                    <Link
+                        to={`/tours/${tour.slug}`}
                         className="text-xs font-bold text-flag-red hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-flag-red"
                     >
-                        Plan trip
-                    </a>
+                        View tour
+                    </Link>
                 </div>
             </div>
         </article>

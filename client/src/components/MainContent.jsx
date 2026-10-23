@@ -3,10 +3,12 @@ import Hero from './Hero'
 import TourCard from './TourCard'
 import Testimonials from './Testimonials'
 import PlanYourTrip from './PlanYourTrip'
+import { useLocation } from 'react-router'
 
 const categories = ['All', 'Cities', 'Coast']
 
 function MainContent() {
+    const { hash } = useLocation()
     const [tours, setTours] = useState([])
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState('')
@@ -48,6 +50,18 @@ function MainContent() {
         }
     }, [])
 
+    useEffect(() => {
+        if (loading || !hash) {
+            return
+        }
+
+        const section = document.getElementById(hash.slice(1))
+
+        section?.scrollIntoView({
+            block: 'start',
+        })
+    }, [hash, loading])
+
     const visibleTours =
         filter === 'All'
             ? tours
@@ -80,11 +94,10 @@ function MainContent() {
                             type="button"
                             aria-pressed={filter === category}
                             onClick={() => setFilter(category)}
-                            className={`cursor-pointer rounded-md border border-flag-green bg-flag-white px-4 py-2 text-sm font-bold transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-flag-red ${
-                                filter === category
+                            className={`cursor-pointer rounded-md border border-flag-green bg-flag-white px-4 py-2 text-sm font-bold transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-flag-red ${filter === category
                                     ? 'text-flag-red'
                                     : 'text-text'
-                            }`}
+                                }`}
                         >
                             {category}
                         </button>
