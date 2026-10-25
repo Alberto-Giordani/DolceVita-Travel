@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
+import TourBooking from './TourBooking'
 
 function TourDetails() {
     const { slug } = useParams()
@@ -123,12 +124,16 @@ function TourDetails() {
                             </span>
                         </p>
 
-                        <a
-                            href="/#plan"
-                            className="inline-block rounded-md bg-flag-red px-5 py-3 font-bold text-flag-white transition-colors duration-300 hover:bg-flag-red-dark focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-flag-red"
-                        >
-                            Plan your trip
-                        </a>
+                        <div className="mt-8">
+                            <TourBooking key={tour.id} tour={tour} />
+
+                            <a
+                                href="/#plan"
+                                className="mt-6 inline-block font-bold text-flag-red underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-flag-red"
+                            >
+                                Plan your trip
+                            </a>
+                        </div>
                     </div>
                 </article>
             )}
