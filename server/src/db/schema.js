@@ -68,3 +68,29 @@ export const verification = pgTable('verification', {
     createdAt: timestamp('created_at').notNull().defaultNow(),
     updatedAt: timestamp('updated_at').notNull().defaultNow(),
 })
+
+export const orders = pgTable('orders', {
+    id: text('id').primaryKey(),
+    userId: text('user_id')
+        .notNull()
+        .references(() => user.id, { onDelete: 'restrict' }),
+    status: text('status').notNull().default('pending'),
+    currency: text('currency').notNull().default('usd'),
+    totalAmount: integer('total_amount').notNull(),
+    stripeSessionId: text('stripe_session_id').unique(),
+    createdAt: timestamp('created_at').notNull().defaultNow(),
+    paidAt: timestamp('paid_at'),
+})
+
+export const orderItems = pgTable('order_items', {
+    id: text('id').primaryKey(),
+    orderId: text('order_id')
+        .notNull()
+        .references(() => orders.id, { onDelete: 'cascade' }),
+    tourId: text('tour_id')
+        .notNull()
+        .references(() => tours.id, { onDelete: 'restrict' }),
+    tourTitle: text('tour_title').notNull(),
+    quantity: integer('quantity').notNull(),
+    unitPrice: integer('unit_price').notNull(),
+})
