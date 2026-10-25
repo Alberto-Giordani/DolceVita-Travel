@@ -4,6 +4,7 @@ import cors from 'cors'
 import { toNodeHandler } from 'better-auth/node'
 import { auth } from './auth.js'
 import { toursRouter } from './routes/tours.js'
+import { checkoutRouter } from './routes/checkout.js'
 
 const app = express()
 const PORT = Number(process.env.PORT ?? 3000)
@@ -27,7 +28,7 @@ app.get('/api/health', (_req, res) => {
 })
 
 app.use('/api/tours', toursRouter)
-
+app.use('/api/checkout', checkoutRouter)
 app.listen(PORT, () => {
     console.log(`DolceVita API listening on http://localhost:${PORT}`)
 })
