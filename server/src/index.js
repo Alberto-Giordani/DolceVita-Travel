@@ -5,6 +5,8 @@ import { toNodeHandler } from 'better-auth/node'
 import { auth } from './auth.js'
 import { toursRouter } from './routes/tours.js'
 import { checkoutRouter } from './routes/checkout.js'
+import { stripeWebhook } from './routes/webhooks.js'
+import { ordersRouter } from './routes/orders.js'
 
 const app = express()
 const PORT = Number(process.env.PORT ?? 3000)
@@ -17,6 +19,14 @@ app.use(
 )
 
 app.all('/api/auth/*splat', toNodeHandler(auth))
+
+app.post(
+    '/api/webhooks/stripe',
+    express.raw({ type: 'application/json' }),
+    stripeWebhook
+)
+
+app.use('/api/orders', ordersRouter)
 
 app.use(express.json())
 

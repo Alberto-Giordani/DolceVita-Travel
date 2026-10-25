@@ -5,6 +5,7 @@ import TourDetails from './components/TourDetails'
 import Footer from './components/Footer'
 import SignUp from './components/SignUp'
 import Login from './components/Login'
+import CheckoutSuccess from './components/CheckoutSuccess'
 
 function App() {
     return (
@@ -12,24 +13,20 @@ function App() {
             <Header />
 
             <Routes>
-                <Route
-                    path="/"
-                    element={<MainContent />}
-                />
+                <Route path="/" element={<MainContent />} />
 
                 <Route
                     path="/tours/:slug"
                     element={<TourDetails />}
                 />
 
-                <Route
-                    path="/signup"
-                    element={<SignUp />}
-                />
+                <Route path="/signup" element={<SignUp />} />
+
+                <Route path="/login" element={<Login />} />
 
                 <Route
-                    path="/login"
-                    element={<Login />}
+                    path="/checkout/success"
+                    element={<CheckoutSuccess />}
                 />
 
                 <Route
